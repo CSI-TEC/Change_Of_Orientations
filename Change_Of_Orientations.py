@@ -12,7 +12,7 @@ import pandas as pd  # Para manejar la tabla de inputs
 # Crear la ventana principal
 root = tk.Tk()
 root.title("Selección de Directorio")
-root.geometry("600x400")
+root.geometry("900x400")
 
 # Crear un frame para los elementos que usan pack()
 frame_pack = tk.Frame(root)
