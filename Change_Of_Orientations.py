@@ -155,21 +155,20 @@ if hcm_am_files:
 ########################################################################################################
 
 # Crear la tabla de inputs dentro del frame de grid
-labels = ['Índice', 'EB', 'WB', 'NB', 'SB']  # Agregamos 'Índice' como la primera columna
+labels = ['EB', 'WB', 'NB', 'SB']
 entries = {}
 
-# Crear las cabeceras de la tabla (Índice, EB, WB, NB, SB)
+# Mostrar los nombres de las direcciones en lugar de los índices en las filas
 for i, label in enumerate(labels):
-    tk.Label(frame_grid, text=label, font=("Arial", 12)).grid(row=0, column=i)
+    tk.Label(frame_grid, text=label, font=("Arial", 12)).grid(row=0, column=i+1)  # Usar frame_grid para los títulos de las columnas (orientaciones)
 
-# Agregar los inputs de la tabla
-for j in range(len(diccionario)):
-    # Colocamos la numeración de las filas en la primera columna
-    tk.Label(frame_grid, text=str(j), font=("Arial", 12)).grid(row=j+1, column=0)  # Columna de índice
-    # Crear entradas para las demás columnas (EB, WB, NB, SB)
-    for i, label in enumerate(labels[1:], 1):  # Empezamos en 1 para saltar la columna de índice
-        entry = tk.Entry(frame_grid)
-        entry.grid(row=j+1, column=i)
+Addresses = Addresses[:-1]
+# Aquí iteramos sobre las direcciones (Addresses) en lugar de los índices
+for j, address in enumerate(Addresses):
+    tk.Label(frame_grid, text=address, font=("Arial", 10)).grid(row=j+1, column=0)  # Nombres de las direcciones como filas
+    for i, label in enumerate(labels):
+        entry = tk.Entry(frame_grid)  # Crear un campo de entrada por cada orientación (EB, WB, NB, SB)
+        entry.grid(row=j+1, column=i+1)
         if label not in entries:
             entries[label] = []
         entries[label].append(entry)
